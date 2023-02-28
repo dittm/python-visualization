@@ -12,10 +12,14 @@ di_data = books['format'].fillna('Unknown')
 counts = di_data.value_counts()
 print(counts)
 
-plt.pie(counts)
-plt.title('Item Formats')
+fig, ax = plt.subplots()
+fig.set_size_inches(8,5)
+ax.pie(counts)
+ax.set_title('Item Formats')
 legend_labels = [f'{counts.index[i]}: {counts.values[i]}' for i in range(len(counts))]
-plt.legend(legend_labels, loc='lower left')
+ax.legend(legend_labels, loc='lower left')
+axins = zoomed_inset_axes(ax, 13, loc='center right')
+axins.pie(counts)
 plt.show()
 
 # top 15 items purchased / borrowed
